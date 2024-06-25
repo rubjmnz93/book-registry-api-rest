@@ -35,3 +35,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = "email"
+
+
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    isbn = models.CharField(max_length=10)
+    pages = models.IntegerField()
+
+    def __str__(self) -> str:
+        return self.title

@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from core import models
+
 
 class ModelTest(TestCase):
     def test_create_user_with_email(self):
@@ -41,3 +43,13 @@ class ModelTest(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_create_book(self):
+        book = models.Book.objects.create(
+            title="Sample book",
+            author="Test Author",
+            description="This is a new book description.",
+            isbn="0123456789",
+            pages=100,
+        )
+        self.assertEqual(str(book), book.title)
